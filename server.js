@@ -32,7 +32,7 @@ mongoose.connect(db, {
   useUnifiedTopology: true,
   useFindAndModify: false
 }).then(() => console.log('Mongoose connected')).catch(err => console.log(err))
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 // passport 初始化
 app.use(passport.initialize());
