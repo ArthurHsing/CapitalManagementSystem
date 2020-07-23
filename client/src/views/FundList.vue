@@ -166,7 +166,10 @@ export default {
       switch (this.$store.getters.capitalListAction) {
         //添加状态
         case "add": {
-          if (this.paginations.total % this.paginations.pageSize === 1) {
+          if (
+            this.paginations.total % this.paginations.pageSize === 1 &&
+            this.paginations.total !== 1
+          ) {
             this.paginations.currentPage += 1;
           }
           break;
@@ -177,7 +180,9 @@ export default {
             //在删除一页的唯一数据后，页码应该-1，因为那页的唯一数据已经被删了，那一页已经不存在了
             this.paginations.total % this.paginations.pageSize === 0 && //肯定满足每一页都是满的
             this.paginations.currentPage ===
-              parseInt(this.paginations.total / this.paginations.pageSize) + 1
+              parseInt(this.paginations.total / this.paginations.pageSize) +
+                1 &&
+            this.paginations.currentPage !== 1
           ) {
             //还要满足先前的页码是当前总页码+1
             this.paginations.currentPage -= 1;
